@@ -1,0 +1,557 @@
+/* ==========================================
+   CHICKPEA REVOLUTION - MAIN STYLES
+   ========================================== */
+
+/* CSS Variables */
+:root {
+    --color-soil: #3B1F0A;
+    --color-cream: #E8D5A3;
+    --color-green: #4A7C3F;
+    --color-golden: #F5A623;
+    --color-terracotta: #C1622F;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #000;
+    color: var(--color-cream);
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* Custom Cursor */
+#custom-cursor {
+    mix-blend-mode: difference;
+}
+
+#custom-cursor .cursor-chana {
+    animation: cursor-rotate 3s linear infinite;
+}
+
+@keyframes cursor-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+body:hover #custom-cursor {
+    opacity: 1;
+}
+
+/* Hide default cursor */
+a, button, .plant-selector {
+    cursor: none;
+}
+
+/* Loading Screen */
+#loader {
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#loader .loader-pod svg {
+    overflow: visible;
+}
+
+/* Pod fill animation */
+@keyframes pod-fill {
+    from {
+        transform: translateY(70px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
+
+/* WebGL Canvas */
+#webgl-canvas {
+    z-index: 1;
+}
+
+/* Typography */
+.font-serif {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+}
+
+/* Scroll Indicator Animation */
+#scroll-indicator {
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+#scroll-indicator .animate-pulse {
+    animation: pulse-down 2s ease-in-out infinite;
+}
+
+@keyframes pulse-down {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scaleY(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(1.2);
+    }
+}
+
+/* Plant Selector Buttons */
+.plant-selector {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.plant-selector:hover {
+    transform: translateY(-8px);
+}
+
+.plant-selector.dimmed {
+    opacity: 0.3;
+    transform: scale(0.95);
+}
+
+.plant-selector.active {
+    transform: translateY(-12px) scale(1.05);
+}
+
+.plant-selector.active > div:first-child {
+    box-shadow: 0 0 40px rgba(245, 166, 35, 0.4);
+}
+
+/* Journey Progress */
+.journey-step {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.journey-step.active > div:first-child {
+    background-color: var(--color-golden);
+    border-color: var(--color-golden);
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.5);
+}
+
+.journey-step.active span {
+    color: var(--color-cream);
+}
+
+.journey-step.completed > div:first-child {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+}
+
+/* Journey Text Animations */
+.journey-text {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(20px);
+}
+
+.journey-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Weight Selector Buttons */
+.weight-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    background: rgba(232, 213, 163, 0.1);
+    border: 1px solid rgba(232, 213, 163, 0.2);
+    border-radius: 0.75rem;
+    color: var(--color-cream);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.weight-btn:hover {
+    background: rgba(232, 213, 163, 0.15);
+    border-color: rgba(232, 213, 163, 0.3);
+}
+
+.weight-btn.active {
+    background: rgba(74, 124, 63, 0.3);
+    border-color: var(--color-green);
+    color: var(--color-cream);
+}
+
+/* Product Card */
+#product-card {
+    transition: opacity 0.5s ease;
+}
+
+#product-card.visible {
+    opacity: 1;
+}
+
+#product-card .product-card-inner {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#product-card.visible .product-card-inner {
+    transform: translateX(0);
+}
+
+/* Add to Cart Button Animation */
+#add-to-cart-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+#add-to-cart-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+#add-to-cart-btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Cart Icon */
+#cart-icon {
+    transition: transform 0.3s ease;
+}
+
+#cart-icon:hover {
+    transform: scale(1.1);
+}
+
+#cart-count.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@keyframes cart-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+#cart-count.bounce {
+    animation: cart-bounce 0.4s ease;
+}
+
+/* Confetti */
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Glassmorphism Effect */
+.glass {
+    background: rgba(59, 31, 10, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(232, 213, 163, 0.1);
+}
+
+/* Scene Transitions */
+section {
+    position: relative;
+}
+
+/* God Ray Effect Overlay */
+.god-ray-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at 20% 20%,
+        rgba(245, 166, 35, 0.1) 0%,
+        transparent 50%
+    );
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.god-ray-overlay.visible {
+    opacity: 1;
+}
+
+/* Dust Particles (CSS fallback) */
+.dust-particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: rgba(232, 213, 163, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float-dust 10s infinite ease-in-out;
+}
+
+@keyframes float-dust {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(100px, -200px) scale(0.5);
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.5;
+    }
+}
+
+/* Text Animations */
+.text-reveal {
+    overflow: hidden;
+}
+
+.text-reveal span {
+    display: inline-block;
+    transform: translateY(100%);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-reveal.revealed span {
+    transform: translateY(0);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #custom-cursor {
+        display: none;
+    }
+    
+    body {
+        cursor: auto;
+    }
+    
+    a, button, .plant-selector {
+        cursor: pointer;
+    }
+    
+    .plant-selector > div:first-child {
+        width: 5rem;
+        height: 5rem;
+    }
+    
+    #product-card {
+        align-items: flex-end;
+        justify-content: center;
+        padding: 1rem;
+    }
+    
+    #product-card .product-card-inner {
+        max-width: 100%;
+        transform: translateY(100%);
+    }
+    
+    #product-card.visible .product-card-inner {
+        transform: translateY(0);
+    }
+    
+    #journey-progress {
+        left: 1rem;
+    }
+    
+    #journey-progress span {
+        display: none !important;
+    }
+}
+
+/* Performance - Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --color-cream: #FFFFFF;
+        --color-soil: #000000;
+    }
+    
+    .glass {
+        background: rgba(0, 0, 0, 0.9);
+        border: 2px solid white;
+    }
+}
+
+/* Dark mode is default, but ensure consistency */
+@media (prefers-color-scheme: light) {
+    /* Keep dark theme regardless */
+    body {
+        background-color: #000;
+        color: var(--color-cream);
+    }
+}
+
+/* Scene-specific styles */
+[data-scene="awakening"] {
+    background: transparent;
+}
+
+[data-scene="selector"] {
+    background: transparent;
+}
+
+[data-scene="journey"] {
+    background: transparent;
+}
+
+[data-scene="field"] {
+    background: transparent;
+}
+
+/* Bokeh effect (CSS fallback for HDRI) */
+.bokeh-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bokeh-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    animation: bokeh-float 20s infinite ease-in-out;
+}
+
+@keyframes bokeh-float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+/* Utility classes */
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-up {
+    animation: slideUp 0.8s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Shimmer effect for loading states */
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(232, 213, 163, 0.1) 0%,
+        rgba(232, 213, 163, 0.2) 50%,
+        rgba(232, 213, 163, 0.1) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Selection styles */
+::selection {
+    background: rgba(74, 124, 63, 0.5);
+    color: var(--color-cream);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+    outline: 2px solid var(--color-golden);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--color-golden);
+    outline-offset: 2px;
+}
